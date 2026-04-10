@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turing Machine Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Turing Machine Simulator</h1>
+            <p class="subtitle">Visualize the fundamental model of computation</p>
+        </header>
+
+        <main>
+            <!-- Tape Visualization -->
+            <section class="tape-section">
+                <h2>Tape</h2>
+                <div class="tape-container">
+                    <div class="head-indicator">
+                        <span class="head-arrow">▼</span>
+                        <span class="head-label">Head</span>
+                    </div>
+                    <div class="tape" id="tape"></div>
+                </div>
+                <div class="tape-info">
+                    <span>Current State: <strong id="currentState">q0</strong></span>
+                    <span>Head Position: <strong id="headPosition">0</strong></span>
+                    <span>Steps: <strong id="stepCount">0</strong></span>
+                </div>
+            </section>
+
+            <!-- Controls -->
+            <section class="controls-section">
+                <div class="input-group">
+                    <label for="inputString">Input String:</label>
+                    <input type="text" id="inputString" placeholder="e.g., 1011" value="1011">
+                    <button id="loadInput" class="btn btn-primary">Load</button>
+                </div>
+                
+                <div class="button-group">
+                    <button id="stepBtn" class="btn btn-secondary">Step</button>
+                    <button id="runBtn" class="btn btn-success">Run</button>
+                    <button id="pauseBtn" class="btn btn-warning" disabled>Pause</button>
+                    <button id="resetBtn" class="btn btn-danger">Reset</button>
+                </div>
+
+                <div class="speed-control">
+                    <label for="speed">Speed:</label>
+                    <input type="range" id="speed" min="100" max="2000" value="500">
+                    <span id="speedValue">500ms</span>
+                </div>
+            </section>
+
+            <!-- State Diagram -->
+            <section class="state-section">
+                <h2>State Diagram</h2>
+                <div class="state-diagram" id="stateDiagram"></div>
+            </section>
+
+            <!-- Rules Editor -->
+            <section class="rules-section">
+                <h2>Transition Rules</h2>
+                <p class="rules-help">Define rules: Current State, Read Symbol → Write Symbol, Move Direction, Next State</p>
+                
+                <div class="preset-machines">
+                    <label>Presets:</label>
+                    <select id="presetSelect">
+                        <option value="custom">Custom</option>
+                        <option value="binaryIncrement" selected>Binary Increment</option>
+                        <option value="palindrome">Palindrome Checker</option>
+                        <option value="unaryAddition">Unary Addition</option>
+                        <option value="binaryDecrement">Binary Decrement</option>
+                        <option value="onesComplement">One's Complement</option>
+                        <option value="twosComplement">Two's Complement</option>
+                    </select>
+                </div>
+
+                <div class="rules-table-container">
+                    <table class="rules-table" id="rulesTable">
+                        <thead>
+                            <tr>
+                                <th>Current State</th>
+                                <th>Read</th>
+                                <th>Write</th>
+                                <th>Move</th>
+                                <th>Next State</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rulesBody"></tbody>
+                    </table>
+                </div>
+                
+                <button id="addRule" class="btn btn-primary">+ Add Rule</button>
+            </section>
+
+            <!-- Execution Log -->
+            <section class="log-section">
+                <h2>Execution Log</h2>
+                <div class="log-container" id="logContainer">
+                    <p class="log-placeholder">Execution steps will appear here...</p>
+                </div>
+                <button id="clearLog" class="btn btn-secondary">Clear Log</button>
+            </section>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <h2>About Turing Machines</h2>
+                <div class="info-content">
+                    <p>A <strong>Turing Machine</strong> is a mathematical model of computation that defines an abstract machine. It consists of:</p>
+                    <ul>
+                        <li><strong>Tape:</strong> An infinite strip divided into cells, each containing a symbol</li>
+                        <li><strong>Head:</strong> Reads and writes symbols on the tape, moves left or right</li>
+                        <li><strong>State Register:</strong> Stores the current state of the machine</li>
+                        <li><strong>Transition Function:</strong> Rules that determine the machine's behavior</li>
+                    </ul>
+                    <p>The machine operates by reading the current symbol, then based on the current state and symbol, it writes a new symbol, moves the head, and transitions to a new state.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Turing Machine Simulator — Educational Tool for Understanding Computation</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
